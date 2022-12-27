@@ -1,0 +1,6 @@
+{
+  "discord_token": "Your Discord Token",
+  "spotify_token": "Your Spotify Token",
+  "client_id": "Your Spotify Client ID",
+  "client_secret": "Your Spotify Client Secret"
+}
