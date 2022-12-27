@@ -18,7 +18,6 @@ spotify = tk.Spotify(token_spotify,
 
 
 class Spotify(commands.Cog):
-
     def __init__(self, bot):
         self.bot = bot
 
@@ -47,7 +46,6 @@ class Spotify(commands.Cog):
                 ":star: " + t.album.name
             ])
             embed.add_field(name=t.name, value=message, inline=False)
-            print(message)
         await ctx.send(embed=embed)
 
 
