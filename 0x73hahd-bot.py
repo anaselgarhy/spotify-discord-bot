@@ -19,25 +19,26 @@ intents = discord.Intents.default()
 intents.message_content = True
 handler = logging.FileHandler(filename='discord.log',
                               encoding='utf-8', mode='w')
-bot = commands.Bot(command_prefix='$',
-                   intents=intents,
-                   strip_after_prefix=True,
-                   description='',
-                   activity=Game(name=''))
 
 
-@bot.event
-async def on_ready():
-    await bot.load_extension('jishaku')
-    try:
-        for file in os.listdir(cwd + '/cogs'):
-            if file.endswith('.py'):
-                print(f'cogs.{file}')
-                await bot.load_extension(f'cogs.{file[:-3]}')
-    except Exception as exception:
-        print(f'Failed while loading the extension\n{exception}')
+class Bot(commands.Bot):
+    def __init__(self):
+        super().__init__(command_prefix='$',
+                         intents=intents,
+                         strip_after_prefix=True,
+                         description='',
+                         activity=Game(name=''))
 
-    print(f'Logged in as {bot.user}')
+    async def on_ready(self):
+        print(f'Logged in as {self.user}')
+        await self.load_extension('jishaku')
+        try:
+            for file in os.listdir(cwd + '/cogs'):
+                if file.endswith('.py'):
+                    print(f'cogs.{file}')
+                    await self.load_extension(f'cogs.{file[:-3]}')
+        except Exception as exception:
+            print(f'Failed while loading the extension\n{exception}')
 
 
-bot.run(discord_token, log_handler=handler)
+Bot().run(discord_token)
