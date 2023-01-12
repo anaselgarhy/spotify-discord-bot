@@ -1,20 +1,18 @@
-import json
 import os
 import logging
 import discord
 from pathlib import Path
 from discord import Game
 from discord.ext import commands
+from configs import Configs
 
 # Get current working directory
 cwd = Path(__file__).cwd()
 cwd = str(cwd)
 print(f'{cwd}\n' + '~' * len(cwd))
 
-# The file that contains tokens and secret stuff
-hiding = json.load(open('hiding.json'))
+configs = Configs.instance()
 
-discord_token = hiding['discord_token']
 intents = discord.Intents.default()
 intents.message_content = True
 handler = logging.FileHandler(filename='discord.log',
@@ -41,4 +39,4 @@ class Bot(commands.Bot):
             print(f'Failed while loading the extension\n{exception}')
 
 
-Bot().run(discord_token)
+Bot().run(configs.discord_token)
