@@ -2,9 +2,13 @@ import json
 
 
 class Configs:
+    """ An singleton class that holds all the configs and all the secrets """
+
     __instance = None
 
     def __init__(self):
+        """ Initialization the instance from the Config class if it doesn't initialized yet,
+         otherwise raise an exception """
         if self.__instance is not None:
             raise Exception("This class is a singleton!")
         try:
