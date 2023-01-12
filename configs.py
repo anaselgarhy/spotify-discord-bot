@@ -25,7 +25,7 @@ class Configs:
 
     @staticmethod
     def instance():
-        """ Get the instance from the Config class, and if dose exists create an new instance and rerun it"""
+        """ Get the instance from the Config class, and if dose exists create an new instance and return it"""
         if Configs.__instance is None:
             Configs()
 
