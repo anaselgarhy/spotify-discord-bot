@@ -9,8 +9,8 @@ cwd = str(cwd)
 
 configs = Configs.instance()
 
-token_spotify = tk.request_client_token(client_id=configs.client_id,
-                                        client_secret=configs.client_secret)
+token_spotify = tk.request_client_token(client_id=configs.spotify_client_id,
+                                        client_secret=configs.spotify_client_secret)
 spotify = tk.Spotify(token_spotify,
                      asynchronous=True)
 scope = tk.scope.user_top_read + tk.scope.playlist_modify_private
